@@ -14,7 +14,7 @@ env:
     - secure: "Ez7qB2PZ/gBXCdOirR0jqcOYDRK9DtPiBFg9p9LTo4VTNZ6UqBrpPLsKGyQSry/zzvI532Y8vtOPL8PNpBaGOexyJ6M0fWQUjjT0/+p53w3syhYRiqJZOiY0PWoq2beRYIFScUNzbaRdZL4cDNsLHaNV+h8KGTYZ+gVXhYerU94=" #OrganizationId
 
 install:
-  - sudo wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  - wget -qO- https://toolbelt.heroku.com/install.sh | sudo sh -qq
   - heroku plugins:install force-com@preview
   - nuget restore src/ForceToolkitForNET.sln
   - nuget install NUnit.Runners -Version 3.2.1 -OutputDirectory testrunner
