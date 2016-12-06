@@ -1,7 +1,16 @@
 language: csharp
 mono:
   - latest
-sudo: required
+sudo: false
+
+# install Heroku CLI 
+# (based on https://github.com/travis-ci/apt-package-whitelist/issues/375)
+addons:
+  apt:
+    sources:
+      - heroku
+    packages:
+      - heroku-toolbelt
 
 solution: src/ForceToolkitForNET.sln
 
@@ -13,11 +22,10 @@ env:
     - secure: "gKbbduuB3GslGVGr0IsFnearI2EDm/PD/EYum2zRDvZsRHy2b4uMl2tpSCjF382PKXWk46ZJ2c2zIvqcxgfHc0NDqloMAH6wwE4VnEDBk5j22X+ea50tdjB0r+RcjG5SbdjqYSSUxM3Ygngl87LfWAZGPWfL5Nm14L/4rhT3cj8=" #Password
     - secure: "Ez7qB2PZ/gBXCdOirR0jqcOYDRK9DtPiBFg9p9LTo4VTNZ6UqBrpPLsKGyQSry/zzvI532Y8vtOPL8PNpBaGOexyJ6M0fWQUjjT0/+p53w3syhYRiqJZOiY0PWoq2beRYIFScUNzbaRdZL4cDNsLHaNV+h8KGTYZ+gVXhYerU94=" #OrganizationId
 
-before_install:
-  - sudo apt-get install heroku-cli -qq
+before_script:
+  - heroku plugins:install force-com@preview
 
 install:
-  - heroku plugins:install force-com@preview
   - nuget restore src/ForceToolkitForNET.sln
   - nuget install NUnit.Runners -Version 3.2.1 -OutputDirectory testrunner
 
