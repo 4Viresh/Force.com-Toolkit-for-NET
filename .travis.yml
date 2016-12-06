@@ -13,9 +13,8 @@ env:
     - secure: "gKbbduuB3GslGVGr0IsFnearI2EDm/PD/EYum2zRDvZsRHy2b4uMl2tpSCjF382PKXWk46ZJ2c2zIvqcxgfHc0NDqloMAH6wwE4VnEDBk5j22X+ea50tdjB0r+RcjG5SbdjqYSSUxM3Ygngl87LfWAZGPWfL5Nm14L/4rhT3cj8=" #Password
     - secure: "Ez7qB2PZ/gBXCdOirR0jqcOYDRK9DtPiBFg9p9LTo4VTNZ6UqBrpPLsKGyQSry/zzvI532Y8vtOPL8PNpBaGOexyJ6M0fWQUjjT0/+p53w3syhYRiqJZOiY0PWoq2beRYIFScUNzbaRdZL4cDNsLHaNV+h8KGTYZ+gVXhYerU94=" #OrganizationId
 
-before_script:
-  # this install.sh script requires sudo
-  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+before_install:
+  - sudo apt-get install heroku-toolbelt -qq
 
 install:
   - heroku plugins:install force-com@preview
